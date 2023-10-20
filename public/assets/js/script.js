@@ -1,4 +1,4 @@
-let diceKept = [5,5,5,1,1];
+let diceKept = [5,5,5,2,2];
 diceKept.sort();// Je mets les chiffres dans l'ordre
 
 console.log(diceKept);
@@ -120,3 +120,29 @@ ruleOk.forEach(rule => {
     const score = checkRules(diceKept, rule);
     console.log(rule, score);
 });
+
+//variables objets
+const points = {
+    total1: false,
+    total2: false,
+    total3: false,
+    total4: false,
+    total5: false,
+    total6: false,
+    bonus: false,
+    brelan: false,
+    carre: false,
+    full: false,
+    smallSuit: false,
+    grandSuit: false,
+    yams: false,
+    chance: false,
+};
+
+ruleOk.forEach(rule => {
+    const score = checkRules(diceKept, rule);
+    if (rule === 'full') {
+        points.full = score; // Insérer la valeur du cas 'full' dans l'objet 'points'
+    }
+});
+console.log(points);
