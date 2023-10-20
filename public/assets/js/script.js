@@ -1,4 +1,4 @@
-// Partie Medhi
+// // Partie Medhi
 
 const diceValues = [];
 const diceKept = [];
@@ -177,16 +177,22 @@ switch (rule) {
         case 'petiteSuite':
             if (diceKept.join('') === '12345') {       
                 total= 30;       
+            } else {
+                total = 0
             }
             break;
         case 'grandeSuite':
             if (diceKept.join('') === '23456') {       
                 total= 40;       
+            } else {
+                total = 0
             }
             break;
         case 'yams':
             if (diceKept[0] === diceKept[4]) {
                 total = 50;
+            } else {
+                total = 0
             }
             break;
         case 'chance':
