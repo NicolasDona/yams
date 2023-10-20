@@ -1,4 +1,4 @@
-let diceKept = [5,5,5,1,5];
+let diceKept = [5,5,5,1,1];
 diceKept.sort();// Je mets les chiffres dans l'ordre
 
 console.log(diceKept);
@@ -80,7 +80,17 @@ switch (rule) {
             }
             return 0;
         case 'full':
-
+            const counts = {};
+            for (const die of diceKept) {
+                counts[die] = (counts[die] || 0) + 1;
+            }
+            const hasThreeOfAKind = Object.values(counts).includes(3);
+            const hasPair = Object.values(counts).includes(2);
+            
+            if (hasThreeOfAKind && hasPair) {
+                return 25; // Score pour un full
+            }
+            return 0;
         case 'petiteSuite':
             if (diceKept.join('') === '12345') {       
                 return 30;       
