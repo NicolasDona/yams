@@ -17,7 +17,7 @@ function displayDice() {
 
     diceValues.forEach((die, index) => {
         const dieElement = document.createElement('img');
-        dieElement.className = 'die';
+        dieElement.className = 'img-fluid col-2 col-lg-4 mb-3';
         
         dieElement.src = `./public/assets/img/${die.value}.png`;
         

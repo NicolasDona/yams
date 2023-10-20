@@ -1,32 +1,8 @@
 /* Partie Medhi */
 
-.dice-container {
-    display: flex;
-}
 
-.die {
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-    /* border: 1px solid white; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.des {
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-    border: 1px solid #000;
-    display: flex;
-    justify-content: center;
-}
 
-.selected {
-    border-bottom: 4px solid black;
-    
-}
 
 
 /* Partie Cédric */
@@ -63,7 +39,7 @@ td.select:hover {
 .text-shadow {
     text-shadow: #000 1px 0 20px;
 }
-.click-dice {
+.selected {
         vertical-align: middle;
         background-image:  url('../img/check-des.png');
         background-repeat: no-repeat;
