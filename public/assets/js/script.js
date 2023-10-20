@@ -1,20 +1,14 @@
-// Partie Medhi
+let diceKept = [5,5,5,1,5];
+diceKept.sort();// Je mets les chiffres dans l'ordre
 
-// Partie Cédric
+console.log(diceKept);
 
-// Partie Nicolas
-
-let diceKept = [3, 1, 3, 3, 3];
-diceKept.sort();
-// Fonction de calcul de la somme
-function totalNumber(arr) {
-    let sum = 0;
-    for (let index = 0; index < arr.length; index++) {
-        sum += arr[index];
-    }
-    return sum;
+// Fonction pour calculer la somme des dés.
+function totalNumber(des) {
+    return des.reduce((acc, valeur) => acc + valeur, 0);
 }
-
+console.log(totalNumber(diceKept));
+// fonction de comparaison/règles
 const checkRules = (diceKept, rule) =>{
 switch (rule) {
     case 'total1':
@@ -71,13 +65,46 @@ switch (rule) {
             return 0;
         }
         break;
-    default:
+        case 'brelan':
+            for (let index = 0; index <= 3; index++) {
+                if (diceKept[index] === diceKept[index + 2]) {
+                    return diceKept[index] * 3; // multiplier seulement 3
+                }
+            }
+            return 0;
+        case 'carre':
+            for (let index = 0; index <= 4; index++) {
+                if (diceKept[index] === diceKept[index + 3]) {
+                    return diceKept[index] * 4; // multiplier seulemnt 4
+                }
+            }
+            return 0;
+        case 'full':
 
+        case 'petiteSuite':
+            if (diceKept.join('') === '12345') {       
+                return 30;       
+            }
+            return 0;
+        case 'grandeSuite':
+            if (diceKept.join('') === '23456') {       
+                return 40;       
+            }
+            return 0;
+        case 'yams':
+            if (diceKept[0] === diceKept[4]) {
+                return 50;
+            }
+            return 0;
+        case 'chance':
+            return totalNumber(diceKept);
+    default:
+        return false; 
         break;
     }
 }
 
-const ruleOk = ['total1','total2','total3','total4','total5','total6'];
+const ruleOk =  ['total1','total2','total3','total4','total5','total6', 'brelan', 'carre', 'full', 'petiteSuite', 'grandeSuite', 'yams', 'chance'];
 
 ruleOk.forEach(rule => {
     const score = checkRules(diceKept, rule);
