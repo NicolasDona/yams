@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-// // Partie Medhi
-
 const diceValues = [];
 const diceKept = [];
 
@@ -66,11 +63,6 @@ function toggleSelectDie(index) {
 
     displayDice();
 }
-
-
-// Partie Cédric
-
-// Parie Nicolas
 
 
 diceKept.sort();// Je mets les chiffres dans l'ordre
@@ -238,5 +230,3 @@ ruleOk.forEach(rule => {
     }
 });
 console.log(points);
-=======
->>>>>>> origin/html_css
