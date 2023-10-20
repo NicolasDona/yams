@@ -30,5 +30,47 @@
 
 
 /* Partie Cédric */
+body {
+    background-image: url('../img/body-yams-mobil.jpg');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    font-family: 'Montserrat Alternates', sans-serif;
+    height: 100vh;
+}
+@media all and (min-width: 992px) {
+    body {
+        background-image: url('../img/body-yams-desktop.jpg');
+        height: 100vh;
+    }
+}
+
+td {
+    text-align: center;
+}
+td.active {
+    background-color: #d1e7dd;
+}
+td.select:hover {
+    box-shadow: 0 0 3px 1px #198754 inset;
+    cursor: pointer;
+}
+.title-logo {
+    font-weight: 900;
+    font-style: italic;
+}
+
+.text-shadow {
+    text-shadow: #000 1px 0 20px;
+}
+.click-dice {
+        vertical-align: middle;
+        background-image:  url('../img/check-des.png');
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: 100%;
+
+}
+
 
 /* Partie Nicolas */

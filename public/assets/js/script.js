@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // // Partie Medhi
 
 const diceValues = [];
@@ -237,3 +238,5 @@ ruleOk.forEach(rule => {
     }
 });
 console.log(points);
+=======
+>>>>>>> origin/html_css
