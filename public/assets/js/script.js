@@ -41,7 +41,7 @@ function rollDice() {
     
     displayDice();
     console.log('diceValues:', diceValues);
-    console.log('diceKept:', diceKept);
+    console.log('selected:', diceKept);
 }
 
 function toggleSelectDie(index) {
@@ -61,8 +61,6 @@ function toggleSelectDie(index) {
         }
     }
 
-    displayDice();
-}
 
 
 diceKept.sort();// Je mets les chiffres dans l'ordre
@@ -230,3 +228,6 @@ ruleOk.forEach(rule => {
     }
 });
 console.log(points);
+
+    displayDice();
+}
