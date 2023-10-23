@@ -13,51 +13,46 @@
     <title>Le Yams</title>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg bg-transparent" data-bs-theme="dark">
-        <div class="container">
-            <a class="navbar-brand text-light" href="#">
-                <h4 class="title-logo"><img class="me-2" src="./public/assets/img/des.gif" height="45" alt="">Le Yam's</h4>
-            </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav text-center">
-                    <li class="nav-item m-2">
-                        <a class="btn btn-success rounded-5" href="#">Règles du jeu</a>
-                    </li>
-                    <li class="nav-item m-2">
-                        <a class="btn btn-danger rounded-5" href="#">Créer une nouvelle partie</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-transparent" data-bs-theme="dark">
+            <div class="container">
+                <a class="navbar-brand text-light" href="#">
+                    <h3 class="title-logo"><img class="me-2" src="./public/assets/img/des.gif" height="45" alt="">Le Yam's</h3>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav text-center">
+                        <li class="nav-item m-2">
+                            <!-- Button trigger modal -->
+                            <a class="btn btn-success rounded-5" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Règles du jeu</a>
 
+                        </li>
+                        <li class="nav-item m-2">
+                            <a class="btn btn-danger rounded-5" href="#">Créer une nouvelle partie</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 <main>
     <div class="container my-3 my-lg-4">
         <div class="row g-5 justify-content-center align-items-lg-center">
             <div class="col-12 col-lg-7 col-xl-6">
                 <div class="px-lg-5 mx-lg-5">
-                    <div class="row justify-content-center">
-                        <img class="img-fluid col-2 col-lg-4 mb-3" src="./public/assets/img/des.png" alt="">
-                        <img class="img-fluid col-2 col-lg-4 mb-3 click-dice" src="./public/assets/img/des.png" alt="">
-                        <img class="img-fluid col-2 col-lg-4 mb-3 click-dice" src="./public/assets/img/des.png" alt="">
-                        <img class="img-fluid col-2 col-lg-4 mb-3" src="./public/assets/img/des.png" alt="">
-                        <img class="img-fluid col-2 col-lg-4 mb-3" src="./public/assets/img/des.png" alt="">
+        
+                    <div id="diceContainer"class="row justify-content-center">
+        
                     </div>
                 </div>
-
                 <div class="text-center">
-                    <a class="btn btn-light btn-lg rounded-5 my-3 shadow" href="#">Lancer les dés<i class="bi bi-arrow-repeat ms-2"></i></a>
+                    <a id="rollButton" class="btn btn-light btn-lg rounded-5 my-3 shadow" href="#">Lancer les dés<i class="bi bi-arrow-repeat ms-2"></i></a>
                     <h4 class="text-light fw-light text-shadow mb-4">Il te reste <span class="fw-bold h2">3</span> lancés</h4>
                     <h5 class="text-light text-shadow"><i class="bi bi-info-circle-fill me-2"></i>Clique sur les dés pour les mettre de côté</h5>
                 </div>
-
             </div>
-
             <div class="col-12 col-lg-5 col-xl-6">
                 <div class="p-4 bg-white shadow-lg">
                     <h4 class="text-center text-success">Tableau des scores</h4>
@@ -71,65 +66,65 @@
                         <tbody class="table-group-divider">
                             <tr>
                                 <th scope="row"><i class="bi bi-dice-1 me-1"></i>Total 1</th>
-                                <td class="select"></td>
+                                <td class="select" id="total1"></td>
                             </tr>
                             <tr>
                                 <th scope="row"><i class="bi bi-dice-2 me-1"></i>Total 2</th>
-                                <td class="select active">4</td>
+                                <td class="select active" id="total2">4</td>
                             </tr>
                             <tr>
                                 <th scope="row"><i class="bi bi-dice-3 me-1"></i>Total 3</th>
-                                <td class="select"></td>
+                                <td class="select" id="total3"></td>
                             </tr>
                             <tr>
                                 <th scope="row"><i class="bi bi-dice-4 me-1"></i>Total 4</th>
-                                <td class="select"></td>
+                                <td class="select" id="total4"></td>
                             </tr>
                             <tr>
                                 <th scope="row"><i class="bi bi-dice-5 me-1"></i>Total 5</th>
-                                <td class="select"></td>
+                                <td class="select" id="total5"></td>
                             </tr>
                             <tr>
                                 <th scope="row"><i class="bi bi-dice-6 me-1"></i>Total 6</th>
-                                <td class="select"></td>
+                                <td class="select" id="total6"></td>
                             </tr>
                             <tr class="table-success">
                                 <th scope="row">Bonus <span class="fw-light"><small>Si le cumul de Total 1 à 6 >= 63pts = 35pts</small></span></th>
-                                <td></td>
+                                <td id="bonus"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Brelan</th>
-                                <td class="select"></td>
+                                <td class="select" id="brelan"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Carré</th>
-                                <td class="select"></td>
+                                <td class="select" id="carre"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Full <span class="fw-light">- 25pts</span></th>
-                                <td class="select"></td>
+                                <td class="select" id="full"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Petite Suite <span class="fw-light">- 30pts</span></th>
-                                <td class="select"></td>
+                                <td class="select" id="petite-suite"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Grande Suite <span class="fw-light">- 40pts</span></th>
-                                <td class="select"></td>
+                                <td class="select" id="grande-suite"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Yams <span class="fw-light">- 50pts</span></th>
-                                <td class="select"></td>
+                                <td class="select" id="yams"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Chance</th>
-                                <td class="select"></td>
+                                <td class="select" id="chance"></td>
                             </tr>
                         </tbody>
                         <tfoot class="table-success">
                             <tr>
                                 <th scope="col">Total score</th>
-                                <th class="text-center">100</th>
+                                <th class="text-center" id="total-score"></th>
                             </tr>
                         </tfoot>
                         </table>
@@ -141,6 +136,38 @@
 
 <footer>
 </footer>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Règles du jeu</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <h3>Déroulement du jeu</h3>
+                <p>Le jeu se déroule tour à tour. Le joueur lance les cinq dés dans le but d'obtenir une figure (c'est-à-dire, un arrangement particulier des dés) permettant de marquer des points. Le joueur a le droit à trois lancers de dés par tour. Après chaque lancer, il peut choisir de mettre de côté certains de ces dés, et relancer le reste.
+                    
+                    Après un maximum de trois lancers, le joueur doit choisir entre marquer une figure dont il remplit les conditions, ou barrer une figure. Marquer une figure permet d'inscrire le score dans la ligne et donc d'obtenir les points correspondants. S'il n'a aucune combinaison de dés, ou s'il ne peut pas marquer de figure, il doit barrer une figure et inscrire 0 dans la ligne de son choix : il ne pourra pas marquer les points de cet item dans la partie2.
+                    
+                    Étant donné que l'on remplit une ligne par tour (soit marquée, soit barrée), une partie de Yam's se déroule sur 13 tours de jeu : 6 tours pour la partie mineure, suivis de 7 pour la partie majeure.
+
+
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="./public/assets/framework/bootstrap.min.js"></script>
 <script src="./public/assets/js/script.js"></script>
 </body>
