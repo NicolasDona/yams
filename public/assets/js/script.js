@@ -274,12 +274,30 @@ const points = {
 };
 
 ruleOk.forEach(rule => {
-    const score = checkRules(diceKept, rule);
-    if (rule === 'full') {
-        points.full = score; // Insérer la valeur du cas 'full' dans l'objet 'points'
+    let score = checkRules(diceKept, rule);
+    if (rule === 'brelan') {
+        points.full = score;
     }
+    if (rule === 'full') {
+        points.full = score; 
+    }
+    if (rule === 'carre') {
+        points.carre = score;
+    }
+    if (rule === 'smallSuit') {
+        points.smallSuit = score;
+    }
+    if (rule === 'grandSuit') {
+        points.grandSuit = score;
+    }
+    if (rule === 'yams') {
+        points.yams = score;
+    }
+    if (rule === 'chance') {
+        points.chance = score; 
+    }   
 });
-// console.log(points);
+console.log(points.full);
 
     displayDice();
 }
