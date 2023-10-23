@@ -261,4 +261,4 @@ ruleOk.forEach(rule => {
 console.log(points);
 
 
-.addEventListener('click', () => calcSheet(score));
+// .addEventListener('click', () => calcSheet(score));
