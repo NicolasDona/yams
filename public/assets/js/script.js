@@ -1,24 +1,15 @@
-// Variables
 const diceValues = [];
 const diceKept = [];
-
-// Éléments sélecteurs HTML
-
-
-
 
 document.getElementById('rollButton').addEventListener('click', rollDice);
 document.addEventListener('DOMContentLoaded', createDice);
 document.addEventListener('DOMContentLoaded', displayDice);
 
-// Fonction pour créer une combinaison de dés
 function createDice() {
     for (let i = 0; i < 5; i++) {
         diceValues.push({ value: 0, selected: false });
     }
 }
-
-
 
 function displayDice() {
     const diceContainer = document.getElementById('diceContainer');
@@ -26,14 +17,17 @@ function displayDice() {
 
     diceValues.forEach((die, index) => {
         const dieElement = document.createElement('img');
-        dieElement.className = 'img-fluid col-2 col-lg-4 mb-3';       
-        dieElement.src = `./public/assets/img/${die.value}.png`;       
+        dieElement.className = 'img-fluid col-2 col-lg-4 mb-3';
+        
+        dieElement.src = `./public/assets/img/${die.value}.png`;
+        
         if (die.selected) {
             dieElement.classList.add('selected');
             dieElement.addEventListener('click', () => toggleSelectDie(index));
         } else {
             dieElement.addEventListener('click', () => toggleSelectDie(index));
         }
+
         diceContainer.appendChild(dieElement);
     });
 }
@@ -51,7 +45,8 @@ function rollDice() {
 }
 
 function toggleSelectDie(index) {
-    const die = diceValues[index];  
+    const die = diceValues[index];
+    
     if (die.selected) {
         die.selected = false;
         const selectedIndex = diceKept.indexOf(die.value);
@@ -65,17 +60,32 @@ function toggleSelectDie(index) {
             diceKept.push(die.value);
         }
     }
+
+    displayDice();
 }
 
 // Fonction pour commencer un nouveau jeu
 const newGame = () => {
+    // Réinitialise les dés à 0.
+    diceValues.forEach((die) => {
+        die.value = 0;
+        die.selected = false;
+    });
 
-};// FIN ---- Fonction pour commencer un nouveau jeu
+    // Efface le tableau des dés conservés.
+    diceKept.length = 0;
+    displayDice();
+    
+    // Tableau des score à zero
 
+}
 
+window.addEventListener("load", () => {
+    newGame();
+});
 
-
-
+const newGameBtn = document.getElementById("newGameBtn");
+newGameBtn.addEventListener('click', newGame);
 
 
 
@@ -222,14 +232,6 @@ ruleOk.forEach(rule => {
 
 
 
-
-// window.addEventListener("load", () => {
-//     newGame();
-    
-// });
-
-const newGameBtn = document.getElementById("newGameBtn");
-newGameBtn.addEventListener('click', newGame);
 
 
 
