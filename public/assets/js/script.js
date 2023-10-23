@@ -149,6 +149,7 @@ const checkRules = (diceKept, rule) =>{
                         brelan.textContent = `${total}`;
                         brelan.classList.add("active");
                         brelan.classList.remove("select");
+                        points.brelan = total // A TESTER !
                         break;
                     }                
     }});
@@ -276,7 +277,7 @@ const points = {
 ruleOk.forEach(rule => {
     let score = checkRules(diceKept, rule);
     if (rule === 'brelan') {
-        points.full = score;
+        points.brelan = score;
     }
     if (rule === 'full') {
         points.full = score; 
