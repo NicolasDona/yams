@@ -131,24 +131,21 @@ switch (rule) {
         }
         break;
         case 'brelan':
-            for (let index = 0; index <= 3; index++) {
-                if (diceKept[index] === diceKept[index + 2]) {
-                    total= diceKept[index] * 3; // multiplier seulement 3
-                }
-                else{
-                    total = 0
+            for (let index = 0; index < diceKept.length - 2; index++) {
+                if (diceKept[index] === diceKept[index + 1] && diceKept[index] === diceKept[index + 2]) {
+                    total = diceKept[index] * 3;
+                    break;
                 }
             }
             break;
-        case 'carre':
-            for (let index = 0; index <= 4; index++) {
-                if (diceKept[index] === diceKept[index + 3]) {
-                    total = diceKept[index] * 4; // multiplier seulemnt 4
-                } else {
-                    total = 0
+            case 'carre':
+                for (let index = 0; index < diceKept.length - 3; index++) {
+                    if (diceKept[index] === diceKept[index + 1] && diceKept[index] === diceKept[index + 2] && diceKept[index] === diceKept[index + 3]) {
+                        total = diceKept[index] * 4;
+                        break;
+                    }
                 }
-            }
-        break;
+                break;
         case 'full':
             let threeNumbers = [];
             let twoNumbers = [];
@@ -181,13 +178,11 @@ switch (rule) {
                 total = 0
             }
             break;
-        case 'yams':
-            if (diceKept[0] === diceKept[4]) {
-                total = 50;
-            } else {
-                total = 0
-            }
-            break;
+            case 'yams':
+                if (new Set(diceKept).size === 1) {  // Tous les dés sont identiques
+                    total = 50;
+                }
+                break;
         case 'chance':
             total= totalNumber(diceKept);
             break;
