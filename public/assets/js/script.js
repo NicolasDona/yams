@@ -1,9 +1,11 @@
 const diceValues = [];
 const diceKept = [];
+const score = false;
 
 document.getElementById('rollButton').addEventListener('click', rollDice);
 document.addEventListener('DOMContentLoaded', createDice);
 document.addEventListener('DOMContentLoaded', displayDice);
+
 
 function createDice() {
     for (let i = 0; i < 5; i++) {
@@ -40,44 +42,64 @@ function rollDice() {
     });
     
     displayDice();
-    console.log('diceValues:', diceValues);
-    console.log('diceKept:', diceKept);
+    // console.log('diceValues:', diceValues);
+    // console.log('selected:', diceKept);
 }
 
-function toggleSelectDie(index) {
-    const die = diceValues[index];
-    
-    if (die.selected) {
-        die.selected = false;
-        const selectedIndex = diceKept.indexOf(die.value);
-        if (selectedIndex !== -1) {
-            diceKept.splice(selectedIndex, 1);
-        }
-    } else {
-        const selectedCount = diceValues.filter((d) => d.selected).length;
-        if (selectedCount < 5) {
-            die.selected = true;
-            diceKept.push(die.value);
-        }
-    }
 
-    displayDice();
-}
-
-// Fonction pour commencer un nouveau jeu
+////////////////// Fonction pour commencer un nouveau jeu
 const newGame = () => {
     // Réinitialise les dés à 0.
     diceValues.forEach((die) => {
         die.value = 0;
         die.selected = false;
     });
-
     // Efface le tableau des dés conservés.
     diceKept.length = 0;
-    displayDice();
-    
-    // Tableau des score à zero
+    displayDice();   
 
+    guessCount = 3;
+
+    // Tableau des score à zero
+    total1.disabled = false;
+    total1.textContent = '';
+    total1.classList.add("select");
+    total2.disabled = false;
+    total2.textContent = '';
+    total2.classList.add("select");
+    total3.disabled = false;
+    total3.textContent = '';
+    total3.classList.add("select");
+    total4.disabled = false;
+    total4.textContent = '';
+    total4.classList.add("select");
+    total5.disabled = false;
+    total5.textContent = '';
+    total5.classList.add("select");
+    total6.disabled = false;
+    total6.textContent = '';
+    total6.classList.add("select");
+    brelan.disabled = false;
+    brelan.textContent = '';
+    brelan.classList.add("select");
+    carre.disabled = false;
+    carre.textContent = '';
+    carre.classList.add("select");
+    full.disabled = false;
+    full.textContent = '';
+    full.classList.add("select");
+    petiteSuite.disabled = false;
+    petiteSuite.textContent = '';
+    petiteSuite.classList.add("select");
+    grandeSuite.disabled = false;
+    grandeSuite.textContent = '';
+    grandeSuite.classList.add("select");
+    yams.disabled = false;
+    yams.textContent = '';
+    yams.classList.add("select");
+    chance.disabled = false;
+    chance.textContent = '';
+    chance.classList.add("select");
 }
 
 window.addEventListener("load", () => {
@@ -90,150 +112,190 @@ newGameBtn.addEventListener('click', newGame);
 
 
 
+
+
+
 diceKept.sort();// Je mets les chiffres dans l'ordre
-
-console.log(diceKept);
-
 // Fonction pour calculer la somme des dés.
 function totalNumber(des) {
     return des.reduce((acc, valeur) => acc + valeur, 0);
 }
-console.log(totalNumber(diceKept));
+// console.log(totalNumber(diceKept));
 // fonction de comparaison/règles
 const checkRules = (diceKept, rule) =>{
     let total = 0
-switch (rule) {
-    case 'total1':
-        const ones = diceKept.filter(die => die === 1);
-        if (diceKept.includes(1)) {
-            total = ones.reduce((total, die) => total + die, 0);
-        } else {
-            total = 0;
-        }
-        //condition ternaire
-        // diceKept.includes(1) ? total = ones.reduce((total, die) => total + die, 0) :  total = 0;
-        break;
-    case 'total2':
-        if (diceKept.includes(2)) {
-            const ones = diceKept.filter(die => die === 2);
-            total = ones.reduce((total, die) => total + die, 0);
-            
-        } else {
-            total = 0;
-        }
-        break;
-    case 'total3':
-        if (diceKept.includes(3)) {
-            const ones = diceKept.filter(die => die === 3);
-            total = ones.reduce((total, die) => total + die, 0);
-        } else {
-            total = 0;
-        }
-        break;
-    case 'total4':
-        if (diceKept.includes(4)) {
-            const ones = diceKept.filter(die => die === 4);
-            total = ones.reduce((total, die) => total + die, 0);
-
-        } else {
-            total = 0;
-        }
-        break;
-    case 'total5':
-        if (diceKept.includes(5)) {
-            const ones = diceKept.filter(die => die === 5);
-            total = ones.reduce((total, die) => total + die, 0);
-        } else {
-            total = 0;
-        }
-        break;
-    case 'total6':
-        if (diceKept.includes(6)) {
-            const ones = diceKept.filter(die => die === 6);
-            total = ones.reduce((total, die) => total + die, 0);
-        } else {
-            total = 0
-        }
-        break;
-        case 'brelan':
-            for (let index = 0; index <= 3; index++) {
-                if (diceKept[index] === diceKept[index + 2]) {
-                    total= diceKept[index] * 3; // multiplier seulement 3
-                }
-                else{
-                    total = 0
-                }
-            }
+    switch (rule) {
+        case 'total1':
+                const total1 = document.getElementById('total1');
+                total1.addEventListener('click', function () {
+                    const sum = diceKept.reduce((total, value) => (value === 1 ? total + 1 : total), 0);
+                    total1.textContent = `${sum}`;
+                    total1.disabled = true;
+                    total1.classList.remove("select");
+                });
+            //condition ternaire
+            // diceKept.includes(1) ? total = ones.reduce((total, die) => total + die, 0) :  total = 0;
             break;
-        case 'carre':
-            for (let index = 0; index <= 4; index++) {
-                if (diceKept[index] === diceKept[index + 3]) {
-                    total = diceKept[index] * 4; // multiplier seulemnt 4
+        case 'total2':
+            const total2 = document.getElementById('total2');
+            total2.addEventListener('click', function () {
+                const sum = diceKept.reduce((total, value) => (value === 2 ? total + 2 : total), 0);
+                total2.textContent = `${sum}`;
+                total2.disabled = true;
+                total2.classList.remove("select");
+            });
+            break;
+        case 'total3':
+            const total3 = document.getElementById('total3');
+            total3.addEventListener('click', function () {
+                const sum = diceKept.reduce((total, value) => (value === 3 ? total + 3 : total), 0);
+                total3.textContent = `${sum}`;
+                total3.disabled = true;
+                total3.classList.remove("select");
+            });
+            break;
+        case 'total4':
+            const total4 = document.getElementById('total4');
+            total4.addEventListener('click', function () {
+                const sum = diceKept.reduce((total, value) => (value === 4 ? total + 4 : total), 0);
+                total4.textContent = `${sum}`;
+                total4.disabled = true;
+                total4.classList.remove("select");
+            });
+            break;
+        case 'total5':
+            const total5 = document.getElementById('total5');
+            total5.addEventListener('click', function () {
+                const sum = diceKept.reduce((total, value) => (value === 5 ? total + 5 : total), 0);
+                total5.textContent = `${sum}`;
+                total5.disabled = true;
+                total5.classList.remove("select");
+            });
+            break;
+        case 'total6':
+            const total6 = document.getElementById('total6');
+            total6.addEventListener('click', function () {
+                const sum = diceKept.reduce((total, value) => (value === 6 ? total + 6 : total), 0);
+                total6.textContent = `${sum}`;
+                total6.disabled = true;
+                total6.classList.remove("select");
+            });
+            break;
+            
+            case 'brelan':
+            const brelan = document.getElementById('brelan');
+    
+            brelan.addEventListener('click', function () {
+                for (let index = 0; index < diceKept.length - 2; index++) {
+                    if (diceKept[index] === diceKept[index + 1] && diceKept[index] === diceKept[index + 2]) {
+                        total = diceKept[index] * 3;
+                    }       
+                    brelan.textContent = `${total}`;
+                    brelan.disabled = true;
+                    brelan.classList.remove("select");
+            }});
+            break;
+            case 'carre':
+            const carre = document.getElementById('carre');
+    
+            carre.addEventListener('click', function () {
+                    for (let index = 0; index < diceKept.length - 3; index++) {
+                        if (diceKept[index] === diceKept[index + 1] && diceKept[index] === diceKept[index + 2] && diceKept[index] === diceKept[index + 3]) {
+                        total = diceKept[index] * 4;
+                    }
+                    carre.textContent = `${total}`;
+                    carre.disabled = true;
+                    carre.classList.remove("select");
+                    break;              
+            }});
+            case 'full':
+
+                const full = document.getElementById('full');
+                full.addEventListener('click', function () {
+
+                const counts = Array(7).fill(0);  // De 0 à 6  pas d'index 0)
+                for (const die of diceKept) {
+                    counts[die]++;
+                }
+                const threeNumber = counts.includes(3);
+                const twoNumber = counts.includes(2);
+                if (threeNumber && twoNumber) {
+                    total = 25;
+                }
+                full.textContent = `${total}`;
+                full.disabled = true;
+                full.classList.remove("select");
+            });
+            break;
+
+            case 'petiteSuite':
+        
+                const petiteSuite = document.getElementById('petiteSuite');      
+        
+                petiteSuite.addEventListener('click', function () {
+                    if (diceKept.join('') === '12345') {       
+                        total= 30;       
+                    } else {
+                        total = 0
+                    }
+                    petiteSuite.textContent = `${total}`;
+                    petiteSuite.disabled = true;
+                    petiteSuite.classList.remove("select");
+                });
+    
+                break;
+            case 'grandeSuite':
+                const grandeSuite = document.getElementById('grandeSuite');      
+        
+                grandeSuite.addEventListener('click', function () {
+                    if (diceKept.join('') === '23456') {       
+                        total= 40;       
+                    } else {
+                        total = 0
+                    }
+                    grandeSuite.textContent = `${total}`;
+                    grandeSuite.disabled = true;
+                    grandeSuite.classList.remove("select");
+                });
+                break;
+    
+            case 'yams':
+                const yams = document.getElementById('yams');      
+                yams.addEventListener('click', function () {
+    
+                if (diceKept[0] === diceKept[4]) {
+                    total = 50;
                 } else {
                     total = 0
                 }
-            }
-        break;
-        case 'full':
-            let threeNumbers = [];
-            let twoNumbers = [];
-            console.log(threeNumbers, twoNumbers);
-            for (let index = 0; index <= 3; index++) {
-                if (diceKept[index] === diceKept[index + 2]) {
-                    threeNumbers.push(diceKept[index]);
-                }
-            }
-            for (let index = 0; index <= 2; index++) {
-                if (diceKept[index] === diceKept[index + 1]) {
-                    twoNumbers.push(diceKept[index]);
-                }
-            }
-            if (threeNumbers.length === 3 && twoNumbers.length === 2) {
-                total = 25;
-            }
+                yams.textContent = `${total}`;
+                yams.disabled = true;
+                yams.classList.remove("select");
+            });
+                break;
+    
+            case 'chance':
+                const chance = document.getElementById('chance');      
+                chance.addEventListener('click', function () {
+                total= totalNumber(diceKept);
+                chance.textContent = `${total}`;
+                chance.disabled = true;
+                chance.classList.remove("select");
+            });
+                break;
+        default:
+            console.log("opération non reconnue");
             break;
-        case 'petiteSuite':
-            if (diceKept.join('') === '12345') {       
-                total= 30;       
-            } else {
-                total = 0
-            }
-            break;
-        case 'grandeSuite':
-            if (diceKept.join('') === '23456') {       
-                total= 40;       
-            } else {
-                total = 0
-            }
-            break;
-        case 'yams':
-            if (diceKept[0] === diceKept[4]) {
-                total = 50;
-            } else {
-                total = 0
-            }
-            break;
-        case 'chance':
-            total= totalNumber(diceKept);
-            break;
-    default:
-        console.log("opération non reconnue");
-        break;
-    }
-return total
+        }
+    return total
 }
 
 const ruleOk =  ['total1','total2','total3','total4','total5','total6', 'brelan', 'carre', 'full', 'petiteSuite', 'grandeSuite', 'yams', 'chance'];
 
 ruleOk.forEach(rule => {
     const score = checkRules(diceKept, rule);
-    console.log(rule, score);
+    // console.log(rule, score);
 });
-
-
-
-
-
 
 //variables objets
 const points = {
@@ -252,46 +314,30 @@ const points = {
     yams: false,
     chance: false,
 };
-const calcSheet = (score) => {
+
 ruleOk.forEach(rule => {
     const score = checkRules(diceKept, rule);
     if (rule === 'full') {
         points.full = score; // Insérer la valeur du cas 'full' dans l'objet 'points'
     }
-    if (rule === 'total1') {
-        points.total1 = score;
-    }
-    if (rule === 'total2') {
-        points.total2 = score;
-    }
-    if (rule === 'total3') {
-        points.total3 = score;
-    }
-    if (rule === 'total4') {
-        points.total4 = score;
-    }
-    if (rule === 'total5') {
-        points.total5 = score;
-    }
-    if (rule === 'total6') {
-        points.total6 = score;
-    }
-    if (rule === 'bonus') {
-        points.bonus = score;
-    }
-    if (rule === 'brelan') {
-        points.brelan = score;
-    }
-    if (rule === 'carre') {
-        points.carre = score;
-    }
 });
-}
-
 console.log(points);
 
-
-
-
-
-// .addEventListener('click', () => calcSheet(score));
+function toggleSelectDie(index) {
+    const die = diceValues[index];
+    
+    if (die.selected) {
+        die.selected = false;
+        const selectedIndex = diceKept.indexOf(die.value);
+        if (selectedIndex !== -1) {
+            diceKept.splice(selectedIndex, 1);
+        }
+    } else {
+        const selectedCount = diceValues.filter((d) => d.selected).length;
+        if (selectedCount < 5) {
+            die.selected = true;
+            diceKept.push(die.value);
+        }
+    }
+    displayDice();
+}
