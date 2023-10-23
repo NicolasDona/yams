@@ -44,22 +44,7 @@ function rollDice() {
     // console.log('selected:', diceKept);
 }
 
-function toggleSelectDie(index) {
-    const die = diceValues[index];
-    
-    if (die.selected) {
-        die.selected = false;
-        const selectedIndex = diceKept.indexOf(die.value);
-        if (selectedIndex !== -1) {
-            diceKept.splice(selectedIndex, 1);
-        }
-    } else {
-        const selectedCount = diceValues.filter((d) => d.selected).length;
-        if (selectedCount < 5) {
-            die.selected = true;
-            diceKept.push(die.value);
-        }
-    }
+
 
 
 
@@ -181,12 +166,13 @@ const checkRules = (diceKept, rule) =>{
                 for (let index = 0; index < diceKept.length - 2; index++) {
                     if (diceKept[index] === diceKept[index + 1] && diceKept[index] === diceKept[index + 2]) {
                         total = diceKept[index] * 3;
-                        brelan.textContent = `${total}`;
-                        brelan.classList.add("active");
-                        brelan.classList.remove("select");
-                        break;
-                    }                
-    }});
+                    } 
+                
+                }
+                brelan.textContent = `${total}`;
+                brelan.classList.add("active");
+                brelan.classList.remove("select");             
+    });
             break;
             case 'carre':
             const carre = document.getElementById('carre');
@@ -195,12 +181,15 @@ const checkRules = (diceKept, rule) =>{
                     for (let index = 0; index < diceKept.length - 3; index++) {
                         if (diceKept[index] === diceKept[index + 1] && diceKept[index] === diceKept[index + 2] && diceKept[index] === diceKept[index + 3]) {
                         total = diceKept[index] * 4;
+                        }
+                        
+                    }     
                         carre.textContent = `${total}`;
                         carre.classList.add("active");
-                        carre.classList.remove("select");
-                        break;
-                    }                
-    }});
+                        carre.classList.remove("select");           
+    });
+
+    break;
             case 'full':
 
                 const full = document.getElementById('full');
@@ -315,6 +304,21 @@ ruleOk.forEach(rule => {
     }
 });
 // console.log(points);
-
+function toggleSelectDie(index) {
+    const die = diceValues[index];
+    
+    if (die.selected) {
+        die.selected = false;
+        const selectedIndex = diceKept.indexOf(die.value);
+        if (selectedIndex !== -1) {
+            diceKept.splice(selectedIndex, 1);
+        }
+    } else {
+        const selectedCount = diceValues.filter((d) => d.selected).length;
+        if (selectedCount < 5) {
+            die.selected = true;
+            diceKept.push(die.value);
+        }
+    }
     displayDice();
 }
