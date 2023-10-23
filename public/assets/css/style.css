@@ -16,8 +16,12 @@ body {
     }
 }
 
-td {
+#table-score td {
     text-align: center;
+    border: #dadada 1px solid;
+}
+.td-modal {
+    text-align: left;
 }
 td.active {
     background-color: #d1e7dd;
