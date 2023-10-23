@@ -222,11 +222,43 @@ const points = {
     yams: false,
     chance: false,
 };
-
+const calcSheet = (score) => {
 ruleOk.forEach(rule => {
     const score = checkRules(diceKept, rule);
     if (rule === 'full') {
         points.full = score; // Insérer la valeur du cas 'full' dans l'objet 'points'
     }
+    if (rule === 'total1') {
+        points.total1 = score;
+    }
+    if (rule === 'total2') {
+        points.total2 = score;
+    }
+    if (rule === 'total3') {
+        points.total3 = score;
+    }
+    if (rule === 'total4') {
+        points.total4 = score;
+    }
+    if (rule === 'total5') {
+        points.total5 = score;
+    }
+    if (rule === 'total6') {
+        points.total6 = score;
+    }
+    if (rule === 'bonus') {
+        points.bonus = score;
+    }
+    if (rule === 'brelan') {
+        points.brelan = score;
+    }
+    if (rule === 'carre') {
+        points.carre = score;
+    }
 });
+}
+
 console.log(points);
+
+
+.addEventListener('click', () => calcSheet(score));
