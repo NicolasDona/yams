@@ -63,7 +63,42 @@ function toggleSelectDie(index) {
 
 
 
+// Fonction pour commencer un nouveau jeu
+const newGame = () => {
+    // Réinitialise les dés à 0.
+    diceValues.forEach((die) => {
+        die.value = 0;
+        die.selected = false;
+    });
+
+    // Efface le tableau des dés conservés.
+    diceKept.length = 0;
+    displayDice();
+    
+    // Tableau des score à zero
+
+}
+
+window.addEventListener("load", () => {
+    newGame();
+});
+
+
+
+const newGameBtn = document.getElementById("newGameBtn");
+newGameBtn.addEventListener('click', newGame);
+
+
+
+
+
+
+
 diceKept.sort();// Je mets les chiffres dans l'ordre
+
+
+
+
 
 // console.log(diceKept);
 
