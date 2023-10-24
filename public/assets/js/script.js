@@ -1,6 +1,33 @@
 const diceValues = [];
 const diceKept = [];
 
+//variables objets
+const points = {
+    total1: false,
+    total2: false,
+    total3: false,
+    total4: false,
+    total5: false,
+    total6: false,
+    bonus: false,
+    brelan: false,
+    carre: false,
+    full: false,
+    smallSuit: false,
+    grandSuit: false,
+    yams: false,
+    chance: false,
+};
+
+let calculTotalScore = () => {
+    let total = 0;
+    for (let key in points) {
+        total += points[key];
+    };
+    totalScore.innerHTML = total;
+};
+
+
 document.getElementById('rollButton').addEventListener('click', rollDice);
 document.addEventListener('DOMContentLoaded', createDice);
 document.addEventListener('DOMContentLoaded', displayDice);
@@ -48,27 +75,62 @@ function rollDice() {
 
 
 
-// Fonction pour commencer un nouveau jeu
+////////////////// Fonction pour commencer un nouveau jeu
 const newGame = () => {
     // Réinitialise les dés à 0.
     diceValues.forEach((die) => {
         die.value = 0;
         die.selected = false;
     });
-
     // Efface le tableau des dés conservés.
     diceKept.length = 0;
-    displayDice();
-    
-    // Tableau des score à zero
+    displayDice();   
 
+    // Tableau des score à zero
+    total1.disabled = false;
+    total1.textContent = '';
+    total1.classList.add("select");
+    total2.disabled = false;
+    total2.textContent = '';
+    total2.classList.add("select");
+    total3.disabled = false;
+    total3.textContent = '';
+    total3.classList.add("select");
+    total4.disabled = false;
+    total4.textContent = '';
+    total4.classList.add("select");
+    total5.disabled = false;
+    total5.textContent = '';
+    total5.classList.add("select");
+    total6.disabled = false;
+    total6.textContent = '';
+    total6.classList.add("select");
+    brelan.disabled = false;
+    brelan.textContent = '';
+    brelan.classList.add("select");
+    carre.disabled = false;
+    carre.textContent = '';
+    carre.classList.add("select");
+    full.disabled = false;
+    full.textContent = '';
+    full.classList.add("select");
+    petiteSuite.disabled = false;
+    petiteSuite.textContent = '';
+    petiteSuite.classList.add("select");
+    grandeSuite.disabled = false;
+    grandeSuite.textContent = '';
+    grandeSuite.classList.add("select");
+    yams.disabled = false;
+    yams.textContent = '';
+    yams.classList.add("select");
+    chance.disabled = false;
+    chance.textContent = '';
+    chance.classList.add("select");
 }
 
 window.addEventListener("load", () => {
     newGame();
 });
-
-
 
 const newGameBtn = document.getElementById("newGameBtn");
 newGameBtn.addEventListener('click', newGame);
@@ -76,16 +138,7 @@ newGameBtn.addEventListener('click', newGame);
 
 
 
-
-
-
 diceKept.sort();// Je mets les chiffres dans l'ordre
-
-
-
-
-
-// console.log(diceKept);
 
 // Fonction pour calculer la somme des dés.
 function totalNumber(des) {
@@ -103,6 +156,7 @@ const checkRules = (diceKept, rule) =>{
                     total1.textContent = `${sum}`;
                     total1.disabled = true;
                     total1.classList.remove("select");
+                    points.total1 = sum
                 });
             //condition ternaire
             // diceKept.includes(1) ? total = ones.reduce((total, die) => total + die, 0) :  total = 0;
@@ -114,6 +168,7 @@ const checkRules = (diceKept, rule) =>{
                 total2.textContent = `${sum}`;
                 total2.disabled = true;
                 total2.classList.remove("select");
+                points.total2 = sum
             });
             break;
         case 'total3':
@@ -123,6 +178,7 @@ const checkRules = (diceKept, rule) =>{
                 total3.textContent = `${sum}`;
                 total3.disabled = true;
                 total3.classList.remove("select");
+                points.total3 = sum
             });
             break;
         case 'total4':
@@ -132,6 +188,7 @@ const checkRules = (diceKept, rule) =>{
                 total4.textContent = `${sum}`;
                 total4.disabled = true;
                 total4.classList.remove("select");
+                points.total4 = sum
             });
             break;
         case 'total5':
@@ -141,6 +198,7 @@ const checkRules = (diceKept, rule) =>{
                 total5.textContent = `${sum}`;
                 total5.disabled = true;
                 total5.classList.remove("select");
+                points.total5 = sum
             });
             break;
         case 'total6':
@@ -150,6 +208,7 @@ const checkRules = (diceKept, rule) =>{
                 total6.textContent = `${sum}`;
                 total6.disabled = true;
                 total6.classList.remove("select");
+                points.total6 = sum
             });
             break;
             
@@ -160,28 +219,38 @@ const checkRules = (diceKept, rule) =>{
                 for (let index = 0; index < diceKept.length - 2; index++) {
                     if (diceKept[index] === diceKept[index + 1] && diceKept[index] === diceKept[index + 2]) {
                         total = diceKept[index] * 3;
-                    }       
-                    brelan.textContent = `${total}`;
-                    brelan.disabled = true;
-                    brelan.classList.remove("select");
-            }});
+                    } 
+                
+                }
+                brelan.textContent = `${total}`;
+                brelan.disabled = true;
+                brelan.classList.remove("select");
+                points.brelan = total           
+            });
             break;
+
             case 'carre':
             const carre = document.getElementById('carre');
+    
             carre.addEventListener('click', function () {
-                    for (let index = 0; index < diceKept.length - 3; index++) {
-                        if (diceKept[index] === diceKept[index + 1] && diceKept[index] === diceKept[index + 2] && diceKept[index] === diceKept[index + 3]) {
-                        total = diceKept[index] * 4;
+                for (let index = 0; index < diceKept.length - 3; index++) {
+                    if (diceKept[index] === diceKept[index + 1] && diceKept[index] === diceKept[index + 2] && diceKept[index] === diceKept[index + 3]) {
+                    total = diceKept[index] * 4;
                     }
+                    
+                }     
                     carre.textContent = `${total}`;
                     carre.disabled = true;
                     carre.classList.remove("select");
-                    break;              
-            }});
-            case 'full':
+                    points.carre = total         
+                });
 
-                const full = document.getElementById('full');
-                full.addEventListener('click', function () {
+                break;
+
+            case 'full':
+            
+            const full = document.getElementById('full');
+            full.addEventListener('click', function () {
 
                 const counts = Array(7).fill(0);  // De 0 à 6  pas d'index 0)
                 for (const die of diceKept) {
@@ -195,11 +264,12 @@ const checkRules = (diceKept, rule) =>{
                 full.textContent = `${total}`;
                 full.disabled = true;
                 full.classList.remove("select");
-            });
-            break;
+                points.full = total
+                });
+                break;
 
             case 'petiteSuite':
-        
+                diceKept.sort();
                 const petiteSuite = document.getElementById('petiteSuite');      
         
                 petiteSuite.addEventListener('click', function () {
@@ -211,6 +281,7 @@ const checkRules = (diceKept, rule) =>{
                     petiteSuite.textContent = `${total}`;
                     petiteSuite.disabled = true;
                     petiteSuite.classList.remove("select");
+                    points.smallSuit = total
                 });
     
                 break;
@@ -226,6 +297,7 @@ const checkRules = (diceKept, rule) =>{
                     grandeSuite.textContent = `${total}`;
                     grandeSuite.disabled = true;
                     grandeSuite.classList.remove("select");
+                    points.grandSuit = total
                 });
                 break;
     
@@ -241,6 +313,7 @@ const checkRules = (diceKept, rule) =>{
                 yams.textContent = `${total}`;
                 yams.disabled = true;
                 yams.classList.remove("select");
+                points.yams = total
             });
                 break;
     
@@ -251,6 +324,7 @@ const checkRules = (diceKept, rule) =>{
                 chance.textContent = `${total}`;
                 chance.disabled = true;
                 chance.classList.remove("select");
+                points.chance = total
             });
                 break;
         default:
@@ -267,55 +341,10 @@ ruleOk.forEach(rule => {
     // console.log(rule, score);
 });
 
-//variables objets
-const points = {
-    total1: false,
-    total2: false,
-    total3: false,
-    total4: false,
-    total5: false,
-    total6: false,
-    bonus: false,
-    brelan: false,
-    carre: false,
-    full: false,
-    smallSuit: false,
-    grandSuit: false,
-    yams: false,
-    chance: false,
-};
 
-ruleOk.forEach(rule => {
-    let score = checkRules(diceKept, rule);
-    if (rule === 'brelan') {
-        points.brelan = score;
-    }
-    if (rule === 'full') {
-        points.full = score; 
-    }
-    if (rule === 'carre') {
-        points.carre = score;
-    }
-    if (rule === 'smallSuit') {
-        points.smallSuit = score;
-    }
-    if (rule === 'grandSuit') {
-        points.grandSuit = score;
-    }
-    if (rule === 'yams') {
-        points.yams = score;
-    }
-    if (rule === 'chance') {
-        points.chance = score; 
-    }   
-});
 
-ruleOk.forEach(rule => {
-    const score = checkRules(diceKept, rule);
-    if (rule === 'full') {
-        points.full = score; // Insérer la valeur du cas 'full' dans l'objet 'points'
-    }
-});
+
+console.log(calculTotalScore());
 
 function toggleSelectDie(index) {
     const die = diceValues[index];
@@ -335,3 +364,5 @@ function toggleSelectDie(index) {
     }
     displayDice();
 }
+
+console.log(points);
