@@ -3,29 +3,23 @@ const diceKept = [];
 
 //variables objets
 const points = {
-    total1: false,
-    total2: false,
-    total3: false,
-    total4: false,
-    total5: false,
-    total6: false,
-    bonus: false,
-    brelan: false,
-    carre: false,
-    full: false,
-    smallSuit: false,
-    grandSuit: false,
-    yams: false,
-    chance: false,
+    'total1': false,
+    'total2': false,
+    'total3': false,
+    'total4': false,
+    'total5': false,
+    'total6': false,
+    'bonus': false,
+    'brelan': false,
+    'carre': false,
+    'full': false,
+    'smallSuit': false,
+    'grandSuit': false,
+    'yams': false,
+    'chance': false,
 };
 
-let calculTotalScore = () => {
-    let total = 0;
-    for (let key in points) {
-        total += points[key];
-    };
-    totalScore.innerHTML = total;
-};
+const total1 = document.getElementById('total1');
 
 
 document.getElementById('rollButton').addEventListener('click', rollDice);
@@ -150,16 +144,13 @@ const checkRules = (diceKept, rule) =>{
     let total = 0
     switch (rule) {
         case 'total1':
-                const total1 = document.getElementById('total1');
-                total1.addEventListener('click', function () {
+
                     const sum = diceKept.reduce((total, value) => (value === 1 ? total + 1 : total), 0);
                     total1.textContent = `${sum}`;
                     total1.disabled = true;
                     total1.classList.remove("select");
                     points.total1 = sum
-                });
-            //condition ternaire
-            // diceKept.includes(1) ? total = ones.reduce((total, die) => total + die, 0) :  total = 0;
+
             break;
         case 'total2':
             const total2 = document.getElementById('total2');
@@ -342,9 +333,12 @@ ruleOk.forEach(rule => {
 });
 
 
+total1.addEventListener('click', function () {
+
+    calculTotalScore()
+});
 
 
-console.log(calculTotalScore());
 
 function toggleSelectDie(index) {
     const die = diceValues[index];
@@ -366,3 +360,19 @@ function toggleSelectDie(index) {
 }
 
 console.log(points);
+
+let calculTotalScore = () => {
+    let total = 0;
+    for (let key in points) {
+        total += points[key];
+    };
+    totalScore.innerHTML = total;
+};
+
+console.log(calculTotalScore());
+
+
+
+total1.addEventListener('click', function () {
+    calculTotalScore()
+});
