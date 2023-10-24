@@ -1,9 +1,14 @@
-const diceValues = [];
-const diceKept = [];
+let diceValues = [];
+let diceKept = [];
 
 document.getElementById('rollButton').addEventListener('click', rollDice);
 document.addEventListener('DOMContentLoaded', createDice);
 document.addEventListener('DOMContentLoaded', displayDice);
+const rollCount = document.querySelector(".rollCount b")
+const rollButton = document.getElementById('rollButton');
+
+
+
 
 function createDice() {
     for (let i = 0; i < 5; i++) {
@@ -31,17 +36,25 @@ function displayDice() {
         diceContainer.appendChild(dieElement);
     });
 }
+let rollRemain = 3;
 
 function rollDice() {
-    diceValues.forEach((die) => {
-        if (!die.selected) {
-            die.value = Math.floor(Math.random() * 6) + 1;
+    if (rollRemain > 0) {
+        diceValues.forEach((die) => {
+            if (!die.selected) {
+                die.value = Math.floor(Math.random() * 6) + 1;
+            }
+        });
+
+        rollRemain--;
+        rollCount.innerText = `${rollRemain}`;
+
+        displayDice();
+
+        if (rollRemain === 0) {
+            rollButton.disabled = true;
         }
-    });
-    
-    displayDice();
-    // console.log('diceValues:', diceValues);
-    // console.log('selected:', diceKept);
+    }
 }
 
 
@@ -54,12 +67,36 @@ const newGame = () => {
     diceValues.forEach((die) => {
         die.value = 0;
         die.selected = false;
+        rollButton.disabled = false;
+        rollRemain = 3;
+        rollCount.innerText = `${rollRemain}`;
     });
 
     // Efface le tableau des dés conservés.
     diceKept.length = 0;
     displayDice();
     
+    // Tableau des score à zero
+
+}
+const selectTab = () => {
+    // Réinitialise les dés à 0.
+    diceValues.forEach((die) => {
+        die.value = 0;
+        die.selected = false;
+        rollButton.disabled = false;
+        rollRemain = 3;
+        rollCount.innerText = `${rollRemain}`;
+        
+    }); 
+
+    
+
+        
+
+    // Efface le tableau des dés conservés.
+    displayDice();
+
     // Tableau des score à zero
 
 }
@@ -103,7 +140,10 @@ const checkRules = (diceKept, rule) =>{
                     total1.textContent = `${sum}`;
                     total1.disabled = true;
                     total1.classList.remove("select");
+                    selectTab()
                 });
+                
+
             //condition ternaire
             // diceKept.includes(1) ? total = ones.reduce((total, die) => total + die, 0) :  total = 0;
             break;
@@ -114,6 +154,7 @@ const checkRules = (diceKept, rule) =>{
                 total2.textContent = `${sum}`;
                 total2.disabled = true;
                 total2.classList.remove("select");
+                selectTab()
             });
             break;
         case 'total3':
@@ -123,6 +164,7 @@ const checkRules = (diceKept, rule) =>{
                 total3.textContent = `${sum}`;
                 total3.disabled = true;
                 total3.classList.remove("select");
+                selectTab()
             });
             break;
         case 'total4':
@@ -132,6 +174,7 @@ const checkRules = (diceKept, rule) =>{
                 total4.textContent = `${sum}`;
                 total4.disabled = true;
                 total4.classList.remove("select");
+                selectTab()
             });
             break;
         case 'total5':
@@ -141,6 +184,7 @@ const checkRules = (diceKept, rule) =>{
                 total5.textContent = `${sum}`;
                 total5.disabled = true;
                 total5.classList.remove("select");
+                selectTab()
             });
             break;
         case 'total6':
@@ -150,34 +194,45 @@ const checkRules = (diceKept, rule) =>{
                 total6.textContent = `${sum}`;
                 total6.disabled = true;
                 total6.classList.remove("select");
+                selectTab()
             });
             break;
             
             case 'brelan':
             const brelan = document.getElementById('brelan');
-    
             brelan.addEventListener('click', function () {
                 for (let index = 0; index < diceKept.length - 2; index++) {
                     if (diceKept[index] === diceKept[index + 1] && diceKept[index] === diceKept[index + 2]) {
                         total = diceKept[index] * 3;
-                    }       
-                    brelan.textContent = `${total}`;
-                    brelan.disabled = true;
-                    brelan.classList.remove("select");
-            }});
+                    } 
+                
+                }
+                brelan.textContent = `${total}`;
+                brelan.classList.add("active");
+                brelan.classList.remove("select"); 
+                brelan.disabled = true
+                selectTab()            
+            });
             break;
+
             case 'carre':
             const carre = document.getElementById('carre');
             carre.addEventListener('click', function () {
                     for (let index = 0; index < diceKept.length - 3; index++) {
                         if (diceKept[index] === diceKept[index + 1] && diceKept[index] === diceKept[index + 2] && diceKept[index] === diceKept[index + 3]) {
                         total = diceKept[index] * 4;
-                    }
-                    carre.textContent = `${total}`;
-                    carre.disabled = true;
-                    carre.classList.remove("select");
-                    break;              
-            }});
+                        }
+                        
+                    }     
+                        carre.textContent = `${total}`;
+                        carre.classList.add("active");
+                        carre.classList.remove("select");
+                        carre.disabled = true 
+                        selectTab()          
+    });
+
+    break;
+
             case 'full':
 
                 const full = document.getElementById('full');
@@ -195,13 +250,12 @@ const checkRules = (diceKept, rule) =>{
                 full.textContent = `${total}`;
                 full.disabled = true;
                 full.classList.remove("select");
+                selectTab()
             });
             break;
 
             case 'petiteSuite':
-        
                 const petiteSuite = document.getElementById('petiteSuite');      
-        
                 petiteSuite.addEventListener('click', function () {
                     if (diceKept.join('') === '12345') {       
                         total= 30;       
@@ -211,12 +265,12 @@ const checkRules = (diceKept, rule) =>{
                     petiteSuite.textContent = `${total}`;
                     petiteSuite.disabled = true;
                     petiteSuite.classList.remove("select");
+                    selectTab()
                 });
     
                 break;
             case 'grandeSuite':
                 const grandeSuite = document.getElementById('grandeSuite');      
-        
                 grandeSuite.addEventListener('click', function () {
                     if (diceKept.join('') === '23456') {       
                         total= 40;       
@@ -226,6 +280,7 @@ const checkRules = (diceKept, rule) =>{
                     grandeSuite.textContent = `${total}`;
                     grandeSuite.disabled = true;
                     grandeSuite.classList.remove("select");
+                    selectTab()
                 });
                 break;
     
@@ -241,6 +296,7 @@ const checkRules = (diceKept, rule) =>{
                 yams.textContent = `${total}`;
                 yams.disabled = true;
                 yams.classList.remove("select");
+                selectTab()
             });
                 break;
     
@@ -251,6 +307,7 @@ const checkRules = (diceKept, rule) =>{
                 chance.textContent = `${total}`;
                 chance.disabled = true;
                 chance.classList.remove("select");
+                selectTab()
             });
                 break;
         default:
